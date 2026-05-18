@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_appointment" model="ir.actions.report">
+            <field name="name">Informe de Cita</field>
+            <field name="model">vet.appointment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">vet_clinic.report_appointment_document</field>
+            <field name="report_file">vet_clinic.report_appointment_document</field>
+            <field name="binding_model_id" ref="model_vet_appointment"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_appointment_document">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <h2>Informe de Cita Veterinaria</h2>
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Referencia</strong></td>
+                                        <td><span t-field="doc.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fecha</strong></td>
+                                        <td><span t-field="doc.date"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Estado</strong></td>
+                                        <td><span t-field="doc.state"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Mascota</strong></td>
+                                        <td><span t-field="doc.pet_id"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Dueño</strong></td>
+                                        <td><span t-field="doc.owner_id"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Veterinario</strong></td>
+                                        <td><span t-field="doc.vet_id"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Motivo</strong></td>
+                                        <td><span t-field="doc.reason"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h3>Tratamientos</h3>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Tratamiento</th>
+                                        <th>Medicamento</th>
+                                        <th>Dosis</th>
+                                        <th>Duración (días)</th>
+                                        <th>Estado seguimiento</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="doc.treatment_ids" t-as="treatment">
+                                        <tr>
+                                            <td><span t-field="treatment.name"/></td>
+                                            <td><span t-field="treatment.medicine"/></td>
+                                            <td><span t-field="treatment.dose"/></td>
+                                            <td><span t-field="treatment.duration_days"/></td>
+                                            <td><span t-field="treatment.follow_up_state"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
