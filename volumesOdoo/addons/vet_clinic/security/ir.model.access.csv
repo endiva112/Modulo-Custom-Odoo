@@ -1,2 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_vet_clinic_vet_clinic,vet_clinic.vet_clinic,model_vet_clinic_vet_clinic,base.group_user,1,1,1,1
+access_vet_owner_admin,vet.owner.admin,model_vet_owner,vet_clinic.group_vet_admin,1,1,1,1
+access_vet_owner_user,vet.owner.user,model_vet_owner,vet_clinic.group_vet_user,1,0,0,0
+access_vet_pet_admin,vet.pet.admin,model_vet_pet,vet_clinic.group_vet_admin,1,1,1,1
+access_vet_pet_user,vet.pet.user,model_vet_pet,vet_clinic.group_vet_user,1,0,0,0
+access_vet_appointment_admin,vet.appointment.admin,model_vet_appointment,vet_clinic.group_vet_admin,1,1,1,1
+access_vet_appointment_user,vet.appointment.user,model_vet_appointment,vet_clinic.group_vet_user,1,1,1,0
+access_vet_treatment_admin,vet.treatment.admin,model_vet_treatment,vet_clinic.group_vet_admin,1,1,1,1
+access_vet_treatment_user,vet.treatment.user,model_vet_treatment,vet_clinic.group_vet_user,1,1,1,0

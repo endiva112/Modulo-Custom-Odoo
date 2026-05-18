@@ -6,8 +6,9 @@
         Módulo para la gestión integral de una clínica veterinaria.
         Permite gestionar dueños, mascotas, citas y seguimiento de tratamientos.
     """,
+    'icon': 'vet_clinic/static/description/icon.png',
     'author': "Enrique Díaz Valenzuela",
-    'website': "https://github.com/endiva112",
+    'website': "https://github.com/endiva112/Modulo-Custom-Odoo",
     'category': 'Productivity',
     'version': '0.1',
     'application': True,

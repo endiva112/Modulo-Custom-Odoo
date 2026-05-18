@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_vet_clinic_root"
+            name="Clínica Veterinaria"
+            web_icon="vet_clinic,static/description/icon.png"
+            sequence="10"/>
+
+        <menuitem id="menu_vet_owner"
+            name="Dueños"
+            parent="menu_vet_clinic_root"
+            action="action_vet_owner"
+            sequence="10"/>
+
+        <menuitem id="menu_vet_pet"
+            name="Mascotas"
+            parent="menu_vet_clinic_root"
+            action="action_vet_pet"
+            sequence="20"/>
+
+        <menuitem id="menu_vet_appointment"
+            name="Citas"
+            parent="menu_vet_clinic_root"
+            action="action_vet_appointment"
+            sequence="30"/>
+
+        <menuitem id="menu_vet_treatment"
+            name="Tratamientos"
+            parent="menu_vet_clinic_root"
+            action="action_vet_treatment"
+            sequence="40"/>
+    </data>
+</odoo>
