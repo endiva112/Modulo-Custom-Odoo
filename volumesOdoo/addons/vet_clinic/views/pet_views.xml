@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Vista formulario: permite crear y editar mascotas en detalle -->
         <record id="view_vet_pet_form" model="ir.ui.view">
             <field name="name">vet.pet.form</field>
             <field name="model">vet.pet</field>
             <field name="arch" type="xml">
                 <form string="Mascota">
                     <sheet>
+                        <!-- Grupo principal con los datos de la mascota -->
                         <group>
                             <field name="name"/>
                             <field name="species"/>
@@ -15,8 +17,10 @@
                             <field name="weight"/>
                             <field name="owner_id"/>
                         </group>
+                        <!-- Pestaña que muestra las citas asociadas a la mascota -->
                         <notebook>
                             <page string="Citas">
+                                <!-- Lista embebida con las citas de la mascota -->
                                 <field name="appointment_ids">
                                     <tree>
                                         <field name="name"/>
@@ -32,6 +36,7 @@
             </field>
         </record>
 
+        <!-- Vista lista: muestra todas las mascotas en formato tabla -->
         <record id="view_vet_pet_list" model="ir.ui.view">
             <field name="name">vet.pet.list</field>
             <field name="model">vet.pet</field>
@@ -46,16 +51,19 @@
             </field>
         </record>
 
+        <!-- Vista kanban: muestra las mascotas en tarjetas -->
         <record id="view_vet_pet_kanban" model="ir.ui.view">
             <field name="name">vet.pet.kanban</field>
             <field name="model">vet.pet</field>
             <field name="arch" type="xml">
                 <kanban string="Mascotas">
+                    <!-- Campos necesarios para mostrar en la tarjeta -->
                     <field name="name"/>
                     <field name="species"/>
                     <field name="breed"/>
                     <field name="owner_id"/>
                     <templates>
+                        <!-- Plantilla de cada tarjeta kanban -->
                         <t t-name="kanban-box">
                             <div class="oe_kanban_card oe_kanban_global_click">
                                 <div class="oe_kanban_content">
@@ -71,6 +79,7 @@
             </field>
         </record>
 
+        <!-- Acción que abre el modelo vet.pet con las vistas lista, kanban y formulario -->
         <record id="action_vet_pet" model="ir.actions.act_window">
             <field name="name">Mascotas</field>
             <field name="res_model">vet.pet</field>

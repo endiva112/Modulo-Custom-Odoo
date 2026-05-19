@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Vista formulario: permite crear y editar dueños en detalle -->
         <record id="view_vet_owner_form" model="ir.ui.view">
             <field name="name">vet.owner.form</field>
             <field name="model">vet.owner</field>
             <field name="arch" type="xml">
                 <form string="Dueño">
                     <sheet>
+                        <!-- Grupo principal con los datos de contacto del dueño -->
                         <group>
                             <field name="name"/>
                             <field name="phone"/>
                             <field name="email"/>
                             <field name="address"/>
                         </group>
+                        <!-- Pestaña que muestra las mascotas asociadas al dueño -->
                         <notebook>
                             <page string="Mascotas">
+                                <!-- Lista embebida con las mascotas del dueño -->
                                 <field name="pet_ids">
                                     <tree>
                                         <field name="name"/>
@@ -30,6 +34,7 @@
             </field>
         </record>
 
+        <!-- Vista lista: muestra todos los dueños en formato tabla -->
         <record id="view_vet_owner_list" model="ir.ui.view">
             <field name="name">vet.owner.list</field>
             <field name="model">vet.owner</field>
@@ -42,6 +47,8 @@
             </field>
         </record>
 
+        <!-- Acción que abre el modelo vet.owner con las vistas lista y formulario
+             No tiene kanban ya que los dueños no tienen un flujo de estados que visualizar -->
         <record id="action_vet_owner" model="ir.actions.act_window">
             <field name="name">Dueños</field>
             <field name="res_model">vet.owner</field>

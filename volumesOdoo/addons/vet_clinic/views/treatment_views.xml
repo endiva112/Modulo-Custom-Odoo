@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Vista formulario: permite crear y editar tratamientos en detalle -->
         <record id="view_vet_treatment_form" model="ir.ui.view">
             <field name="name">vet.treatment.form</field>
             <field name="model">vet.treatment</field>
             <field name="arch" type="xml">
                 <form string="Tratamiento">
                     <sheet>
+                        <!-- Grupo principal con los datos del tratamiento -->
                         <group>
                             <field name="name"/>
                             <field name="appointment_id"/>
@@ -16,6 +18,7 @@
                             <field name="duration_days"/>
                             <field name="follow_up_state"/>
                         </group>
+                        <!-- Grupo secundario para las notas de seguimiento -->
                         <group string="Notas">
                             <field name="description"/>
                             <field name="follow_up_notes"/>
@@ -25,6 +28,7 @@
             </field>
         </record>
 
+        <!-- Vista lista: muestra todos los tratamientos en formato tabla -->
         <record id="view_vet_treatment_list" model="ir.ui.view">
             <field name="name">vet.treatment.list</field>
             <field name="model">vet.treatment</field>
@@ -40,17 +44,21 @@
             </field>
         </record>
 
+        <!-- Vista kanban: muestra los tratamientos agrupados por estado de seguimiento
+             Permite visualizar de un vistazo en qué fase está cada animal -->
         <record id="view_vet_treatment_kanban" model="ir.ui.view">
             <field name="name">vet.treatment.kanban</field>
             <field name="model">vet.treatment</field>
             <field name="arch" type="xml">
                 <kanban string="Seguimiento de Tratamientos" default_group_by="follow_up_state">
+                    <!-- Campos necesarios para mostrar en la tarjeta -->
                     <field name="name"/>
                     <field name="pet_id"/>
                     <field name="medicine"/>
                     <field name="follow_up_state"/>
                     <field name="duration_days"/>
                     <templates>
+                        <!-- Plantilla de cada tarjeta kanban -->
                         <t t-name="kanban-box">
                             <div class="oe_kanban_card oe_kanban_global_click">
                                 <div class="oe_kanban_content">
@@ -66,6 +74,7 @@
             </field>
         </record>
 
+        <!-- Acción que abre el modelo vet.treatment con las vistas lista, kanban y formulario -->
         <record id="action_vet_treatment" model="ir.actions.act_window">
             <field name="name">Tratamientos</field>
             <field name="res_model">vet.treatment</field>

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Vista formulario: permite crear y editar citas en detalle -->
         <record id="view_vet_appointment_form" model="ir.ui.view">
             <field name="name">vet.appointment.form</field>
             <field name="model">vet.appointment</field>
             <field name="arch" type="xml">
                 <form string="Cita">
                     <header>
+                        <!-- Botones para cambiar el estado de la cita
+                             Cada botón es visible solo cuando el estado es el adecuado -->
                         <button name="action_start" string="Iniciar consulta"
                             type="object" class="btn-primary"
                             invisible="state != 'pending'"/>
@@ -19,10 +22,12 @@
                         <button name="action_reset" string="Reabrir"
                             type="object"
                             invisible="state != 'cancelled'"/>
+                        <!-- Barra de progreso visual que muestra el estado actual de la cita -->
                         <field name="state" widget="statusbar"
                             statusbar_visible="pending,in_progress,done"/>
                     </header>
                     <sheet>
+                        <!-- Grupo principal con los datos de la cita -->
                         <group>
                             <field name="name"/>
                             <field name="pet_id"/>
@@ -31,8 +36,10 @@
                             <field name="date"/>
                             <field name="reason"/>
                         </group>
+                        <!-- Pestaña que muestra los tratamientos asociados a la cita -->
                         <notebook>
                             <page string="Tratamientos">
+                                <!-- Lista embebida con los tratamientos de la cita -->
                                 <field name="treatment_ids">
                                     <tree>
                                         <field name="name"/>
@@ -48,6 +55,7 @@
             </field>
         </record>
 
+        <!-- Vista lista: muestra todas las citas en formato tabla -->
         <record id="view_vet_appointment_list" model="ir.ui.view">
             <field name="name">vet.appointment.list</field>
             <field name="model">vet.appointment</field>
@@ -63,17 +71,21 @@
             </field>
         </record>
 
+        <!-- Vista kanban: muestra las citas agrupadas por estado
+             Permite visualizar de un vistazo el flujo de trabajo de la clínica -->
         <record id="view_vet_appointment_kanban" model="ir.ui.view">
             <field name="name">vet.appointment.kanban</field>
             <field name="model">vet.appointment</field>
             <field name="arch" type="xml">
                 <kanban string="Citas" default_group_by="state">
+                    <!-- Campos necesarios para mostrar en la tarjeta -->
                     <field name="name"/>
                     <field name="pet_id"/>
                     <field name="vet_id"/>
                     <field name="date"/>
                     <field name="state"/>
                     <templates>
+                        <!-- Plantilla de cada tarjeta kanban -->
                         <t t-name="kanban-box">
                             <div class="oe_kanban_card oe_kanban_global_click">
                                 <div class="oe_kanban_content">
@@ -89,6 +101,7 @@
             </field>
         </record>
 
+        <!-- Acción que abre el modelo vet.appointment con las vistas lista, kanban y formulario -->
         <record id="action_vet_appointment" model="ir.actions.act_window">
             <field name="name">Citas</field>
             <field name="res_model">vet.appointment</field>
