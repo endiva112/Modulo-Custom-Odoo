@@ -7,6 +7,18 @@
             <field name="arch" type="xml">
                 <form string="Cita">
                     <header>
+                        <button name="action_start" string="Iniciar consulta"
+                            type="object" class="btn-primary"
+                            invisible="state != 'pending'"/>
+                        <button name="action_done" string="Finalizar"
+                            type="object" class="btn-primary"
+                            invisible="state != 'in_progress'"/>
+                        <button name="action_cancel" string="Cancelar"
+                            type="object"
+                            invisible="state in ['done', 'cancelled']"/>
+                        <button name="action_reset" string="Reabrir"
+                            type="object"
+                            invisible="state != 'cancelled'"/>
                         <field name="state" widget="statusbar"
                             statusbar_visible="pending,in_progress,done"/>
                     </header>

@@ -19,6 +19,22 @@ class VetAppointment(models.Model):
         ('cancelled', 'Cancelada'),
     ], string='Estado', default='pending', required=True)
     treatment_ids = fields.One2many('vet.treatment', 'appointment_id', string='Tratamientos')
+    
+    def action_start(self):
+        for record in self:
+            record.state = 'in_progress'
+
+    def action_done(self):
+        for record in self:
+            record.state = 'done'
+
+    def action_cancel(self):
+        for record in self:
+            record.state = 'cancelled'
+
+    def action_reset(self):
+        for record in self:
+            record.state = 'pending'
 
     @api.constrains('date')
     def _check_date(self):
