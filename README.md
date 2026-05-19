@@ -71,5 +71,6 @@ vet_clinic/
 ├── static/
 │   └── description/
 │       └── icon.png
+├── __init__.py
 └── __manifest__.py
 ```
